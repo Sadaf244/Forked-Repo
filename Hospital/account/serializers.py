@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
         model=User
         fields=['user','email','is_doctor']
 class PatientSignupSerializer(serializers.ModelSerializer):
-    password=serializers.CharField(style={"input_type":"password"},write_only=True,)
+    password=serializers.CharField(style={"input_type":"password"},write_only=True)
    
     class Meta:
         model=User
