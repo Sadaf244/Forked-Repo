@@ -4,5 +4,7 @@ from .views import *
 urlpatterns = [
     path('signup/doctor/',DoctorSignupView.as_view()),
     path('signup/patient/',PatientSignupView.as_view()),
-    path('login/',CustomAuthToken.as_view(),name="auth-token")
+    path('login/',CustomAuthToken.as_view(),name="auth-token"),
+    path('profileview/<int:pk>',DoctorProfileView.as_view(),name="profile"),
+    path('patientprofileview/<int:pk>',PatientProfileView.as_view(),name="patientprofile")
 ]

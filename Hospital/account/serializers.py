@@ -42,19 +42,16 @@ class DoctorSignupSerializer(serializers.ModelSerializer):
             email=self.validated_data['email']
         )
         password=self.validated_data['password']
-        # password2=self.validated_data['password2']
-        # if password!=password2:
-        #     raise serializers.ValidationError({"error":"password do not match"})
         user.set_password(password)
         user.is_doctor=True
         user.save()
         Docter.objects.create(user=user)
         return user
 
-# class PatientSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model=Patient
-#         fields="__all__"
+class MedicineSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Medicine
+        fields="__all__"
 
 
     
