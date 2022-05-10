@@ -1,0 +1,14 @@
+command
+python3 -m venv menv 
+menv\Scripts\activate 
+git init 
+git clone https://github.com/Sadaf244/Forked-Repo.git
+git branch -c sadaf19970725
+git checkout sadaf19970725 
+pip install django  
+pip install djangorestframework
+django-admin startproject Hospital
+git add .
+python manage.py startapp Users
+git status
+git commit -m 'first commit'
