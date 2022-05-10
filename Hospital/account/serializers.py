@@ -8,7 +8,7 @@ from .models import *
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model=User
-        fields=['user','email','is_doctor']
+        fields=['username','email','is_doctor']
 class PatientSignupSerializer(serializers.ModelSerializer):
     password=serializers.CharField(style={"input_type":"password"},write_only=True)
    

@@ -56,19 +56,29 @@ class LogoutView(APIView):
     
     
 class DoctorProfileView(generics.RetrieveAPIView):
-    permission_class=[permissions.IsAuthenticated&IsDoctorUser]
+    permission_classes=[permissions.IsAuthenticated&IsDoctorUser]
     serializer_class=UserSerializer
-    queryset=Docter.objects.all()
-    lookup_fields = ['name', 'phone','email']
+    queryset=User.objects.all()
+    lookup_fields = ['username','email']
+
+class DoctorPatientView(generics.ListAPIView):
+    permission_classes=[permissions.IsAuthenticated&IsDoctorUser]
+    serializer_class=UserSerializer
+    queryset=User.objects.all().filter(is_patient=True)
+    lookup_fields = ['username','email']
    
 class PatientProfileView(generics.RetrieveAPIView):
-    permission_class=[permissions.IsAuthenticated&IsPatientUser]
+    permission_classes=[permissions.IsAuthenticated&IsPatientUser]
     serializer_class=UserSerializer
-    queryset=Patient.objects.all()
-    lookup_fields = ['name', 'phone','email']
-class MedicineView(generics.RetrieveAPIView):
-    permission_class=[permissions.IsAuthenticated&IsPatientUser]
+    queryset=User.objects.all()
+    lookup_fields = ['username','email']
+class MedicineView(generics.ListAPIView):
+    permission_classes=[permissions.IsAuthenticated&IsPatientUser]
     serializer_class=MedicineSerializer
     queryset=Medicine.objects.all()
     lookup_fields = ['name','price','symptoms']    
-    
+
+class LogoutView(APIView):
+    def post(self,request,format=None):
+        request.auth.delete()    
+        return Response(status=status.HTTP_200_OK)

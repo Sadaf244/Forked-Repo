@@ -6,5 +6,8 @@ urlpatterns = [
     path('signup/patient/',PatientSignupView.as_view()),
     path('login/',CustomAuthToken.as_view(),name="auth-token"),
     path('profileview/<int:pk>',DoctorProfileView.as_view(),name="profile"),
-    path('patientprofileview/<int:pk>',PatientProfileView.as_view(),name="patientprofile")
+    path('patientprofileview/<int:pk>',PatientProfileView.as_view(),name="patientprofile"),
+    path('medicine',MedicineView.as_view(),name="medicinelist"),
+    path('patientview',DoctorPatientView.as_view(),name="patientlist"),
 ]
+
